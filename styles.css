@@ -1,0 +1,451 @@
+/* SUMMARY
+1. GLOBAL
+2. HEADER AND HERO SECTION
+3. TESTIMONIALS CAROUSEL
+4. TUTORIALS SECTION
+5. FREE MEMBERSHIP SECTION
+6. LATEST VIDEOS SECTION
+7. FOOTER
+8. FAQ SECTION
+9. FILTERS SECTION
+(last) RESPONSIVE DESIGN
+*/
+
+
+/*** 1. GLOBAL ***/
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.extra-bold {
+    font-weight: 900;
+}
+
+.btn {
+    background-color: #C271FF;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.btn:hover, .btn-active {
+    opacity: 0.9;
+}
+
+.carousel .holberton_school-icon-arrow_3,
+.carousel .holberton_school-icon-arrow_4 {
+    font-size: 80px;
+}
+
+/*** 2. HEADER AND HERO SECTION ***/
+
+.hero-section, .pricing-hero, .courses-hero {
+    background-color: white;
+    background-image: url(images/pic_1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+}
+
+.pricing-hero {
+    background-image: url(images/pic_2.jpg);
+}
+
+.courses-hero {
+    background-image: url(images/pic_3.jpg);
+}
+
+/* nav bar
+    ============================= */
+
+.navbar .navbar-toggler {
+    font-size: 30px;
+}
+
+.navbar-brand img {
+    height: 30px;
+}
+
+.navbar ul {
+    font-size: 12px;
+}
+
+.selected-page, .selected-page:hover {
+    color: #C271FF;
+    text-decoration: underline white 2px;
+    text-underline-offset: 8px;
+}
+
+/* middle section
+    ============================= */
+
+.hero-section h1 {
+    font-size: 120px;
+}
+
+.hero-section h2 {
+    margin-bottom: 87px;
+}
+
+.hero-section h2 span {
+    color: #C271FF;
+}
+
+.mid-section {
+    margin-top: 156px;
+    margin-bottom: 168px;
+}
+
+.text-section {
+    margin-top: 90px;
+}
+
+.text-section .play-symbol {
+    height: 60px;
+}
+
+.text-section .what {
+    margin-top: 20px;
+    margin-bottom: 75px;
+}
+
+.text-section p {
+    font-size: 26px;
+}
+
+.text-section .smile-logo {
+    height: 30px;
+}
+
+.text-section .text-logo {
+    height: 40px;
+}
+
+.text-section h1 {
+    font-size: 60px;
+}
+
+.over-section h2 {
+    font-family: 'Coiny';
+    font-weight: 400;
+}
+
+.over-section h2 span {
+    color: #C271FF;
+}
+
+/* pro section
+    ============================= */
+
+.pro-photos {
+    padding-bottom: 96px;
+}
+
+.pro-photos img {
+    width: 150px;
+    height: 150px;
+}
+
+.pro-photos .extra-bold {
+    font-size: 18px;
+}
+
+
+/* pricing table
+    ============================= */
+
+.prices-grid .btn {
+    width: 162px;
+    height: 44px;
+}
+
+.prices-grid .text-muted,
+.prices-grid .small {
+    font-size: 12px;
+}
+
+.prices-grid table {
+    font-size: 18px;
+}
+
+.prices-grid .first-row {
+    border-top: 0
+}
+
+.prices-grid .check {
+    height: 28px;
+}
+
+.prices-grid .signal {
+    height: 35px;
+}
+
+
+/*** 3. TESTIMONIALS CAROUSEL ***/
+
+.testimonials-section {
+    background-color: #C271FF;
+}
+
+#testimonials {
+    background-color: #C271FF;
+}
+
+#testimonials img {
+    width: 160px;
+    height: 160px;
+}
+
+
+/*** 4. TUTORIALS SECTION ***/
+/*** 6. LATEST VIDEOS SECTION ***/
+
+.late-and-tut {
+    padding-bottom: 88px;
+}
+
+.late-and-tut h2 {
+    margin-top: 87px;
+    margin-bottom: 75px;
+}
+
+.late-and-tut h2 span {
+    color: #C271FF;
+}
+
+.late-and-tut .inner-container {
+    width: 80%;
+    overflow: hidden;
+}
+
+.results {
+    padding-bottom: 40px;
+}
+
+.results .card {
+    margin-bottom: 35px;
+}
+
+.late-and-tut .card-img-top,
+.results .card-img-top {
+    max-width: 255px;
+    height: 154px;
+    object-fit: cover;
+}
+
+.late-and-tut .card-img-overlay img,
+.results .card-img-overlay img {
+    width: 64px;
+    height: 64px;
+}
+
+.late-and-tut .card-img-overlay,
+.results .card-img-overlay {
+    height: 154px;
+}
+
+.late-and-tut .card-body,
+.results .card-body {
+    max-width: 255px;
+}
+
+.late-and-tut .vid-desc,
+.results .vid-desc {
+    font-size: 14px;
+}
+
+.late-and-tut .reviewer-info img,
+.results .reviewer-info img {
+    width: 30px;
+    height: 30px;
+}
+
+.late-and-tut .reviewer-name,
+.late-and-tut .length,
+.results .reviewer-name,
+.results .length {
+    color: #C271FF;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.late-and-tut .stars img,
+.results .stars img {
+    height: 15px;
+    width: 15px;
+}
+
+.late-and-tut .holberton_school-icon-arrow_3,
+.late-and-tut .holberton_school-icon-arrow_4 {
+    color: black;
+}
+
+/*** 5. FREE MEMBERSHIP SECTION ***/
+
+.free-membership {
+    background-color: #071629;
+}
+
+.free-membership h2 {
+    padding-top: 70px;
+    padding-bottom: 58px;
+}
+
+.free-membership h2 span {
+    color: #C271FF;
+}
+
+.free-membership img {
+    width: 45px;
+    height: 36px;
+}
+
+.free-membership .sub-header {
+    font-weight: 600;
+}
+
+.free-membership .blurb {
+    font-size: 14px;
+    width: 212px;
+    margin-bottom: 50px;
+}
+
+.free-membership .btn {
+    margin-top: 10px;
+    margin-bottom: 52px;
+    margin-left: calc(50% - 60px - 15px);
+}
+
+/*** 7. FOOTER ***/
+
+.page-footer {
+    background-color: #071629;
+    padding-top: 90px;
+}
+
+.page-footer img {
+    height: 30px;
+}
+
+.page-footer .holberton_school-icon-ic_facebook,
+.page-footer .holberton_school-icon-ic_twitter,
+.page-footer .holberton_school-icon-ic_instagram {
+    font-size: 30px;
+}
+
+.page-footer .copyright {
+    font-size: 12px;
+    padding-top: 45px;
+    padding-bottom: 40px;
+}
+
+/*** 8.FAQ section ***/
+
+.FAQ {
+    padding-bottom: 110px;
+}
+
+.FAQ h1 {
+    font-size: 60px;
+    font-weight: 300;
+    padding-top: 74px;
+}
+
+.FAQ .font-weight-bold {
+    padding-top: 74px;
+}
+
+.FAQ .text-muted {
+    font-size: 14px;
+}
+
+/*** 9. FILTERS SECTION ***/
+
+.filters {
+    background-color: #C271FF;
+}
+
+.filters label {
+    font-size: 12px;
+}
+
+.filters input,
+.filters .dropdown .btn,
+.filters .holberton_school-icon-search_1 {
+    background-color: rgba(255, 255, 255, 0.25);
+    border: none;
+    border-bottom: 1px solid white;
+    font-size: 23px;
+    font-weight: 300;
+}
+
+.filters .dropdown-menu a:hover {
+    background-color: white;
+    color: #C271FF;
+}
+
+.filters ::placeholder {
+    color: white;
+}
+
+.filters .search-icon {
+    background: none;
+    position: relative;
+    left: -1px;
+}
+
+.filters input {
+    height: 47px;
+}
+
+
+/*** X. RESPONSIVE DESIGN ***/
+
+@media (max-width: 575px) {
+
+    .hero-section, .pricing-hero {
+	background-size: auto 60%;
+	background-position: top center;
+	background-color: #071629;
+    }
+
+    .navbar-brand {
+	margin-left: calc(50% - 71px - 57px);
+    }
+
+    .hero-section h1 {
+	font-size: 61px;
+    }
+
+    .mid-section {
+	margin-top: 176px;
+	margin-bottom: 150px;
+    }
+
+    .text-section {
+	margin-top: 60px;
+    }
+
+    .text-section .what {
+	margin-bottom: 50px;
+    }
+
+    .pro-section {
+	padding-right: 30px;
+	padding-left: 30px;
+    }
+
+    .pro-photos {
+	padding-bottom: 38px;
+    }
+
+    .pro-photos div {
+	margin-bottom: 58px;
+    }
+
+    #testimonials .holberton_school-icon-arrow_3,
+    #testimonials .holberton_school-icon-arrow_4 {
+	position: relative;
+	top: -20%;
+    }
+}
