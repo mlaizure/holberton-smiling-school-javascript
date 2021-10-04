@@ -38,7 +38,7 @@ function createCard (id, title, sub_title, thumb_url, author, author_pic_url, st
   if (id === 1) {
     $newCarouselItem.addClass('active');
   }
-  const $newCard = $('<div class="card border-0 col-lg-2"></div>');
+  const $newCard = $('<div class="card border-0 col-lg-3"></div>');
   const $cardImg = $('<img class="card-img-top mx-auto" alt="tutorial thumbnail">');
   $cardImg.attr('src', thumb_url);
   const $cardOverlay = $('<div class="card-img-overlay d-flex justify-content-center mx-auto"><img class="align-self-center" src="./images/play.png" alt="play symbol"></div>');
@@ -82,7 +82,7 @@ function queryTutorials () {
       interval: 10000
     })
     $('.tutorials-section .carousel .carousel-item').each(function () {
-      var minPerSlide = 4;
+      var minPerSlide = 3;
       var next = $(this).next();
       console.log("NEXT: ", next.get(0));
 
