@@ -38,7 +38,7 @@ function createCard (id, title, sub_title, thumb_url, author, author_pic_url, st
   if (id === 1) {
     $newCarouselItem.addClass('active');
   }
-  const $newCard = $('<div class="card border-0 col-lg-3 col-md-6 col-12"></div>');
+  const $newCard = $('<div class="card border-0 col-lg-2"></div>');
   const $cardImg = $('<img class="card-img-top mx-auto" alt="tutorial thumbnail">');
   $cardImg.attr('src', thumb_url);
   const $cardOverlay = $('<div class="card-img-overlay d-flex justify-content-center mx-auto"><img class="align-self-center" src="./images/play.png" alt="play symbol"></div>');
@@ -77,6 +77,25 @@ function queryTutorials () {
   $.get(url, function (data) {
     data.forEach(tutorial => {
       createCard(tutorial.id, tutorial.title, tutorial['sub-title'], tutorial.thumb_url, tutorial.author, tutorial.author_pic_url, tutorial.star, tutorial.duration);
+    });
+    $('#tutorials').carousel({
+      interval: 10000
+    })
+    $('.tutorials-section .carousel .carousel-item').each(function () {
+      var minPerSlide = 4;
+      var next = $(this).next();
+      console.log("NEXT: ", next.get(0));
+
+      if (!next.length)
+	next = $(this).siblings(':first');
+
+      for (var i = 0; i < minPerSlide; i++) {
+	if (!next.length)
+	  next = $(this).siblings(':first');
+
+	next.children(':first-child').clone().appendTo($(this));
+	next = next.next();
+      }
     });
   }).then(() => { $('tutorials-section .lds-heart').hide(); });
 }
