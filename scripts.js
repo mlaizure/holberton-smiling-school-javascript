@@ -39,7 +39,7 @@ function createCard (id, title, sub_title, thumb_url, author, author_pic_url, st
     $newCarouselItem.addClass('active');
   }
   const $newCard = $('<div class="card border-0 col-lg-3"></div>');
-  const $cardImg = $('<img class="card-img-top mx-auto" alt="tutorial thumbnail">');
+  const $cardImg = $('<img class="card-img-top mx-auto d-block" alt="tutorial thumbnail">');
   $cardImg.attr('src', thumb_url);
   const $cardOverlay = $('<div class="card-img-overlay d-flex justify-content-center mx-auto"><img class="align-self-center" src="./images/play.png" alt="play symbol"></div>');
   const $cardBody = $('<div class="card-body mx-auto p-3"></div>');
@@ -97,7 +97,7 @@ function queryTutorials () {
 	next = next.next();
       }
     });
-  }).then(() => { $('tutorials-section .lds-heart').hide(); });
+  }).then(() => { $('.tutorials-section .lds-heart').hide(); });
 }
 
 $(document).ready(function () {

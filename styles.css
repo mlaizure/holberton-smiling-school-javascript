@@ -10,6 +10,7 @@
 9. FILTERS SECTION
 10. LOADERS
 11. RESPONSIVE DESIGN
+12. MULTI-SLIDE CAROUSEL
 */
 
 
@@ -441,6 +442,16 @@ body {
     border-radius: 50% 50% 0 0;
 }
 
+.lds-heart {
+    margin: 20px auto;
+}
+
+.late-and-tut .lds-heart div:after,
+.late-and-tut .lds-heart div:before,
+.late-and-tut .lds-heart div {
+    background: #C271FF;
+}
+
 @keyframes lds-heart {
     0% {
 	transform: scale(0.95);
@@ -462,9 +473,6 @@ body {
     }
 }
 
-.testimonials-section .lds-heart {
-    margin: 20px auto;
-}
 
 /*** 11. RESPONSIVE DESIGN ***/
 
@@ -518,13 +526,24 @@ body {
 }
 
 
+/*** 12. MULTI-SLIDE CAROUSEL ***/
+
 /* Mobile styles */
-@media (max-width: 768px) {
+@media (max-width: 768px) and (min-width: 576px) {
     .tutorials-section .carousel-inner .carousel-item > div {
         display: none;
     }
     .tutorials-section .carousel-inner .carousel-item > div:first-child,
     .tutorials-section .carousel-inner .carousel-item > div:nth-child(2) {
+        display: block;
+    }
+}
+
+@media (max-width: 575px) {
+    .tutorials-section .carousel-inner .carousel-item > div {
+        display: none;
+    }
+    .tutorials-section .carousel-inner .carousel-item > div:first-child {
         display: block;
     }
 }
