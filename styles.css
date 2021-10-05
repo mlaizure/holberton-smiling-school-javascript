@@ -519,11 +519,12 @@ body {
 
 
 /* Mobile styles */
-@media (max-width: 992px) {
+@media (max-width: 768px) {
     .tutorials-section .carousel-inner .carousel-item > div {
         display: none;
     }
-    .tutorials-section .carousel-inner .carousel-item > div:first-child {
+    .tutorials-section .carousel-inner .carousel-item > div:first-child,
+    .tutorials-section .carousel-inner .carousel-item > div:nth-child(2) {
         display: block;
     }
 }
@@ -538,7 +539,7 @@ body {
 
 /* Cause transition animation to only display for one item at a time (this
  * doesn't seem to affect the actual number of cards displayed). */
-@media (min-width: 992px) {
+@media (min-width: 768px) {
 
     /* When moving right */
     .tutorials-section .carousel-inner .carousel-item-right.active,
@@ -550,6 +551,21 @@ body {
     .tutorials-section .carousel-inner .carousel-item-left.active,
     .tutorials-section .carousel-inner .carousel-item-prev {
       transform: translateX(-16.6%);
+    }
+}
+
+@media (min-width: 575px) {
+
+    /* When moving right */
+    .tutorials-section .carousel-inner .carousel-item-right.active,
+    .tutorials-section .carousel-inner .carousel-item-next {
+      transform: translateX(33.2%);
+    }
+
+    /* When moving left */
+    .tutorials-section .carousel-inner .carousel-item-left.active,
+    .tutorials-section .carousel-inner .carousel-item-prev {
+      transform: translateX(-33.2%);
     }
 }
 
