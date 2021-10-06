@@ -33,7 +33,7 @@ function queryTestimonials () {
   });
 }
 
-function createCard (id, title, sub_title, thumb_url, author, author_pic_url, star, duration, late_or_tut) {
+function createCard (id, title, sub_title, thumb_url, author, author_pic_url, star, duration, $carousel) {
   const $newCarouselItem = $('<div class="carousel-item"></div>');
   if (id === 1) {
     $newCarouselItem.addClass('active');
@@ -68,56 +68,44 @@ function createCard (id, title, sub_title, thumb_url, author, author_pic_url, st
   $cardBody.append($cardTitle, $cardSubTitle, $authorInfo, $starsAndLen);
   $newCard.append($cardImg, $cardOverlay, $cardBody);
   $newCarouselItem.append($newCard);
-  if (late_or_tut === 'tut') {
-    $(".tutorials-section .carousel-inner .inner-container").append($newCarouselItem);
-  }
-  if (late_or_tut === 'late') {
-    $(".latest-section .carousel-inner .inner-container").append($newCarouselItem);
-  }
+  $carousel.find(".carousel-inner .inner-container").append($newCarouselItem);
 }
 
-function queryTutorialsOrVideos (url) {
-  $('.late-and-tut .lds-heart').show();
-  $.get(url, function (data) {
+function queryTutorialsOrVideos (url, $carousel) {
+  const $heart = $carousel.find('.lds-heart');
+  $heart.show();
+  return $.get(url, function (data) {
     data.forEach(item => {
-      if (url === 'https://smileschool-api.hbtn.info/popular-tutorials') {
-	createCard(item.id, item.title, item['sub-title'], item.thumb_url, item.author, item.author_pic_url, item.star, item.duration, 'tut');
-      }
-      if (url === 'https://smileschool-api.hbtn.info/latest-videos') {
-	createCard(item.id, item.title, item['sub-title'], item.thumb_url, item.author, item.author_pic_url, item.star, item.duration, 'late');
-      }
+      createCard(item.id, item.title, item['sub-title'], item.thumb_url, item.author, item.author_pic_url, item.star, item.duration, $carousel);
     });
-    if (url === 'https://smileschool-api.hbtn.info/popular-tutorials') {
-      $('#tutorials').carousel({
-	interval: 10000
-      })
-    }
-    if (url === 'https://smileschool-api.hbtn.info/latest-videos') {
-      $('#latest').carousel({
-	interval: 10000
-      })
-    }
-    $('.late-and-tut .carousel .carousel-item').each(function () {
-      var minPerSlide = 3;
-      var next = $(this).next();
-      console.log("NEXT: ", next.get(0));
+    $carousel.carousel({ interval: 10000 });
+  }).then(() => { $heart.hide(); });
+}
 
+function initCarousel () {
+  $('.late-and-tut .carousel .carousel-item').each(function () {
+    var minPerSlide = 3;
+    var next = $(this).next();
+    console.log("NEXT: ", next.get(0));
+
+    if (!next.length)
+      next = $(this).siblings(':first');
+
+    for (var i = 0; i < minPerSlide; i++) {
       if (!next.length)
 	next = $(this).siblings(':first');
 
-      for (var i = 0; i < minPerSlide; i++) {
-	if (!next.length)
-	  next = $(this).siblings(':first');
-
-	next.children(':first-child').clone().appendTo($(this));
-	next = next.next();
-      }
-    });
-  }).then(() => { $('.late-and-tut .lds-heart').hide(); });
+      next.children(':first-child').clone().appendTo($(this));
+      next = next.next();
+    }
+  });
 }
 
 $(document).ready(function () {
   queryTestimonials();
-  queryTutorialsOrVideos('https://smileschool-api.hbtn.info/popular-tutorials');
-  queryTutorialsOrVideos('https://smileschool-api.hbtn.info/latest-videos');
+  const tutorials = 'https://smileschool-api.hbtn.info/popular-tutorials';
+  const videos = 'https://smileschool-api.hbtn.info/latest-videos';
+  queryTutorialsOrVideos(tutorials, $('#tutorials'))
+    .then(() => queryTutorialsOrVideos(videos, $('#latest')))
+    .then(() => initCarousel());
 });
