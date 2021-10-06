@@ -33,7 +33,7 @@ function queryTestimonials () {
   });
 }
 
-function createCard (id, title, sub_title, thumb_url, author, author_pic_url, star, duration) {
+function createCard (id, title, sub_title, thumb_url, author, author_pic_url, star, duration, late_or_tut) {
   const $newCarouselItem = $('<div class="carousel-item"></div>');
   if (id === 1) {
     $newCarouselItem.addClass('active');
@@ -68,20 +68,28 @@ function createCard (id, title, sub_title, thumb_url, author, author_pic_url, st
   $cardBody.append($cardTitle, $cardSubTitle, $authorInfo, $starsAndLen);
   $newCard.append($cardImg, $cardOverlay, $cardBody);
   $newCarouselItem.append($newCard);
-  $(".tutorials-section .carousel-inner .inner-container").append($newCarouselItem);
+  if (late_or_tut === 'tut') {
+    $(".tutorials-section .carousel-inner .inner-container").append($newCarouselItem);
+  }
+  if (late_or_tut === 'late') {
+    $(".latest-section .carousel-inner .inner-container").append($newCarouselItem);
+  }
 }
 
 function queryTutorials () {
   const url = "https://smileschool-api.hbtn.info/popular-tutorials";
-  $('.tutorials-section .lds-heart').show();
+  $('.late-and-tut .lds-heart').show();
   $.get(url, function (data) {
     data.forEach(tutorial => {
-      createCard(tutorial.id, tutorial.title, tutorial['sub-title'], tutorial.thumb_url, tutorial.author, tutorial.author_pic_url, tutorial.star, tutorial.duration);
+      createCard(tutorial.id, tutorial.title, tutorial['sub-title'], tutorial.thumb_url, tutorial.author, tutorial.author_pic_url, tutorial.star, tutorial.duration, 'tut');
     });
     $('#tutorials').carousel({
       interval: 10000
     })
-    $('.tutorials-section .carousel .carousel-item').each(function () {
+    $('#latest').carousel({
+      interval: 10000
+    })
+    $('.late-and-tut .carousel .carousel-item').each(function () {
       var minPerSlide = 3;
       var next = $(this).next();
       console.log("NEXT: ", next.get(0));
@@ -97,7 +105,7 @@ function queryTutorials () {
 	next = next.next();
       }
     });
-  }).then(() => { $('.tutorials-section .lds-heart').hide(); });
+  }).then(() => { $('.late-and-tut .lds-heart').hide(); });
 }
 
 $(document).ready(function () {

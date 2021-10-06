@@ -530,28 +530,28 @@ body {
 
 /* Mobile styles */
 @media (max-width: 768px) and (min-width: 576px) {
-    .tutorials-section .carousel-inner .carousel-item > div {
+    .late-and-tut .carousel-inner .carousel-item > div {
         display: none;
     }
-    .tutorials-section .carousel-inner .carousel-item > div:first-child,
-    .tutorials-section .carousel-inner .carousel-item > div:nth-child(2) {
+    .late-and-tut .carousel-inner .carousel-item > div:first-child,
+    .late-and-tut .carousel-inner .carousel-item > div:nth-child(2) {
         display: block;
     }
 }
 
 @media (max-width: 575px) {
-    .tutorials-section .carousel-inner .carousel-item > div {
+    .late-and-tut .carousel-inner .carousel-item > div {
         display: none;
     }
-    .tutorials-section .carousel-inner .carousel-item > div:first-child {
+    .late-and-tut .carousel-inner .carousel-item > div:first-child {
         display: block;
     }
 }
 
 /* Layout */
-.tutorials-section .carousel-inner .carousel-item.active,
-.tutorials-section .carousel-inner .carousel-item-next,
-.tutorials-section .carousel-inner .carousel-item-prev {
+.late-and-tut .carousel-inner .carousel-item.active,
+.late-and-tut .carousel-inner .carousel-item-next,
+.late-and-tut .carousel-inner .carousel-item-prev {
     display: flex;
     justify-content: center;
 }
@@ -561,14 +561,14 @@ body {
 @media (min-width: 768px) {
 
     /* When moving right */
-    .tutorials-section .carousel-inner .carousel-item-right.active,
-    .tutorials-section .carousel-inner .carousel-item-next {
+    .late-and-tut .carousel-inner .carousel-item-right.active,
+    .late-and-tut .carousel-inner .carousel-item-next {
       transform: translateX(16.6%);
     }
 
     /* When moving left */
-    .tutorials-section .carousel-inner .carousel-item-left.active,
-    .tutorials-section .carousel-inner .carousel-item-prev {
+    .late-and-tut .carousel-inner .carousel-item-left.active,
+    .late-and-tut .carousel-inner .carousel-item-prev {
       transform: translateX(-16.6%);
     }
 }
@@ -576,20 +576,20 @@ body {
 @media (min-width: 575px) {
 
     /* When moving right */
-    .tutorials-section .carousel-inner .carousel-item-right.active,
-    .tutorials-section .carousel-inner .carousel-item-next {
+    .late-and-tut .carousel-inner .carousel-item-right.active,
+    .late-and-tut .carousel-inner .carousel-item-next {
       transform: translateX(33.2%);
     }
 
     /* When moving left */
-    .tutorials-section .carousel-inner .carousel-item-left.active,
-    .tutorials-section .carousel-inner .carousel-item-prev {
+    .late-and-tut .carousel-inner .carousel-item-left.active,
+    .late-and-tut .carousel-inner .carousel-item-prev {
       transform: translateX(-33.2%);
     }
 }
 
 /* Don't show transition animations for other items. */
-.tutorials-section .carousel-inner .carousel-item-right,
-.tutorials-section .carousel-inner .carousel-item-left {
+.late-and-tut .carousel-inner .carousel-item-right,
+.late-and-tut .carousel-inner .carousel-item-left {
     transform: translateX(0);
 }
