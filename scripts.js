@@ -110,6 +110,19 @@ function initCarousel () {
   });
 }
 
+function titleize (str) {
+  return str
+    .split("_")
+    .map((chunk) => chunk[0].toUpperCase() + chunk.substring(1))
+    .join(" ")
+}
+
+function createDropdownItem (menuItem, $menu, $button) {
+  const $menuSelector = $('<a class="dropdown-item" href="#" data-val="' + menuItem + '">' + titleize(menuItem) + '</a>');
+  $menuSelector.click(() => { $button.text(titleize(menuItem)) } );
+  $menu.append($menuSelector);
+}
+
 function queryCourses () {
   const url = 'https://smileschool-api.hbtn.info/courses';
   $('.results .lds-heart').show();
@@ -117,6 +130,14 @@ function queryCourses () {
     data.courses.forEach(item => {
       createResultsCard(item.id, item.title, item['sub-title'], item.thumb_url, item.author, item.author_pic_url, item.star, item.duration);
     });
+    data.topics.forEach(topic => {
+      createDropdownItem(topic, $('.topic-menu'), $('#topic'));
+    });
+    $('#topic').text(titleize(data.topic));
+    data.sorts.forEach(sort => {
+      createDropdownItem(sort, $('.sort-menu'), $('#sort'));
+    });
+    $('#sort').text(titleize(data.sort));
   }).then(() => { $('.results .lds-heart').hide(); });
 }
 
