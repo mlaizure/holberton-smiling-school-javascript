@@ -119,26 +119,37 @@ function titleize (str) {
 
 function createDropdownItem (menuItem, $menu, $button) {
   const $menuSelector = $('<a class="dropdown-item" href="#" data-val="' + menuItem + '">' + titleize(menuItem) + '</a>');
-  $menuSelector.click(() => { $button.text(titleize(menuItem)) } );
+  $menuSelector.click(() => { $button.text(titleize(menuItem));
+			      $button.attr('data-val', menuItem);
+			      queryCourses(); } );
   $menu.append($menuSelector);
+}
+
+function buildDropdowns (data) {
+  data.topics.forEach(t => {
+    createDropdownItem(t, $('.topic-menu'), $('#topic'));
+  });
+  $('#topic').text(titleize(data.topic));
+  data.sorts.forEach(s => {
+    createDropdownItem(s, $('.sort-menu'), $('#sort'));
+  });
+  $('#sort').text(titleize(data.sort));
 }
 
 function queryCourses () {
   const url = 'https://smileschool-api.hbtn.info/courses';
-  $('.results .lds-heart').show();
-  return $.get(url, function (data) {
+  let topic = $('#topic').attr('data-val');
+  let sort = $('#sort').attr('data-val');
+  let q = $('#search').val() || null;
+  $('.results .container .row').empty();
+  $('.results .container').append('<div class="lds-heart"><div></div></div>');
+  return $.get(url, {topic, sort, q}, function (data) {
     data.courses.forEach(item => {
       createResultsCard(item.id, item.title, item['sub-title'], item.thumb_url, item.author, item.author_pic_url, item.star, item.duration);
     });
-    data.topics.forEach(topic => {
-      createDropdownItem(topic, $('.topic-menu'), $('#topic'));
-    });
-    $('#topic').text(titleize(data.topic));
-    data.sorts.forEach(sort => {
-      createDropdownItem(sort, $('.sort-menu'), $('#sort'));
-    });
-    $('#sort').text(titleize(data.sort));
-  }).then(() => { $('.results .lds-heart').hide(); });
+    $('.results .num-vids').text(data.courses.length + ' videos');
+  }).then((data) => { $('.results .lds-heart').hide();
+		      return data });
 }
 
 $(document).ready(function () {
@@ -148,5 +159,6 @@ $(document).ready(function () {
   queryTutorialsOrVideos(tutorials, $('#tutorials'))
     .then(() => queryTutorialsOrVideos(videos, $('#latest')))
     .then(() => initCarousel());
-  queryCourses();
+  queryCourses().then(buildDropdowns);
+  $('#search').change(queryCourses);
 });
