@@ -33,12 +33,22 @@ function queryTestimonials () {
   });
 }
 
-function createCard (id, title, sub_title, thumb_url, author, author_pic_url, star, duration, $carousel) {
+function createCarouselCard($carousel, id, ...args) {
   const $newCarouselItem = $('<div class="carousel-item"></div>');
   if (id === 1) {
     $newCarouselItem.addClass('active');
   }
-  const $newCard = $('<div class="card border-0 col-lg-3"></div>');
+  $newCarouselItem.append(createCard(id, 'col-lg-3', ...args));
+  $carousel.find(".carousel-inner .inner-container").append($newCarouselItem);
+}
+
+function createResultsCard(id, ...args) {
+  $('.results .container .row').append(createCard(id, 'col-lg-3 col-md-4 col-sm-6 col-12 overflow-hidden', ...args));
+}
+
+function createCard (id, cardClasses, title, sub_title, thumb_url, author, author_pic_url, star, duration) {
+  const $newCard = $('<div class="card border-0"></div>');
+  $newCard.addClass(cardClasses);
   const $cardImg = $('<img class="card-img-top mx-auto d-block" alt="tutorial thumbnail">');
   $cardImg.attr('src', thumb_url);
   const $cardOverlay = $('<div class="card-img-overlay d-flex justify-content-center mx-auto"><img class="align-self-center" src="./images/play.png" alt="play symbol"></div>');
@@ -67,8 +77,7 @@ function createCard (id, title, sub_title, thumb_url, author, author_pic_url, st
   $authorInfo.append($authorImg, $authorName);
   $cardBody.append($cardTitle, $cardSubTitle, $authorInfo, $starsAndLen);
   $newCard.append($cardImg, $cardOverlay, $cardBody);
-  $newCarouselItem.append($newCard);
-  $carousel.find(".carousel-inner .inner-container").append($newCarouselItem);
+  return $newCard;
 }
 
 function queryTutorialsOrVideos (url, $carousel) {
@@ -76,7 +85,7 @@ function queryTutorialsOrVideos (url, $carousel) {
   $heart.show();
   return $.get(url, function (data) {
     data.forEach(item => {
-      createCard(item.id, item.title, item['sub-title'], item.thumb_url, item.author, item.author_pic_url, item.star, item.duration, $carousel);
+      createCarouselCard($carousel, item.id, item.title, item['sub-title'], item.thumb_url, item.author, item.author_pic_url, item.star, item.duration);
     });
     $carousel.carousel({ interval: 10000 });
   }).then(() => { $heart.hide(); });
@@ -101,6 +110,16 @@ function initCarousel () {
   });
 }
 
+function queryCourses () {
+  const url = 'https://smileschool-api.hbtn.info/courses';
+  $('.results .lds-heart').show();
+  return $.get(url, function (data) {
+    data.courses.forEach(item => {
+      createResultsCard(item.id, item.title, item['sub-title'], item.thumb_url, item.author, item.author_pic_url, item.star, item.duration);
+    });
+  }).then(() => { $('.results .lds-heart').hide(); });
+}
+
 $(document).ready(function () {
   queryTestimonials();
   const tutorials = 'https://smileschool-api.hbtn.info/popular-tutorials';
@@ -108,4 +127,5 @@ $(document).ready(function () {
   queryTutorialsOrVideos(tutorials, $('#tutorials'))
     .then(() => queryTutorialsOrVideos(videos, $('#latest')))
     .then(() => initCarousel());
+  queryCourses();
 });

@@ -448,7 +448,10 @@ body {
 
 .late-and-tut .lds-heart div:after,
 .late-and-tut .lds-heart div:before,
-.late-and-tut .lds-heart div {
+.late-and-tut .lds-heart div,
+.results .lds-heart div:after,
+.results .lds-heart div:before,
+.results .lds-heart div {
     background: #C271FF;
 }
 
