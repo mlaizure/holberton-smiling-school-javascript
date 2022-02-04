@@ -3,7 +3,7 @@
 ## About
 
 ### Project Description
-This project is a culmination of the technologies and concepts we learned about front-end development. These technologies and concepts include HTML, CSS, Bootstrap, JavaScript, jQuery, and responsive design.
+This project is a combination of technologies and concepts we learned about front-end development. These technologies and concepts include HTML, CSS, Bootstrap, JavaScript, jQuery, and responsive design.
 
 ### Story
 I developed the static HTML and CSS as well as some of the basic Bootstrap features over the course of about a week in another [repository](https://github.com/mlaizure/holberton-smiling-school). Then I spent another week adding the JavaScript, jQuery, and more advanced Bootstrap functionality for the final iteration.
