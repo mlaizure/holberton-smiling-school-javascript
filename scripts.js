@@ -1,3 +1,4 @@
+// Makes the cards for the quotes carousel.
 function createQuote (id, pic_url, name, title, text) {
   const $newQuote = $('<div class="carousel-item"></div>');
   if (id === 1) {
@@ -19,6 +20,7 @@ function createQuote (id, pic_url, name, title, text) {
   $(".testimonials-section .carousel-inner").append($newQuote);
 }
 
+// Getting picture and quote data from API and then calls createQuote to assemble each card for the quotes carousel.
 function queryTestimonials () {
   const url = "https://smileschool-api.hbtn.info/quotes";
   $('.testimonials-section .lds-heart').show();
@@ -33,6 +35,7 @@ function queryTestimonials () {
   });
 }
 
+// Creates cards and adds them to a tutorial or video carousel.
 function createCarouselCard($carousel, id, ...args) {
   const $newCarouselItem = $('<div class="carousel-item"></div>');
   if (id === 1) {
@@ -42,10 +45,12 @@ function createCarouselCard($carousel, id, ...args) {
   $carousel.find(".carousel-inner .inner-container").append($newCarouselItem);
 }
 
+// Creates cards from search results and adds them to the search results page
 function createResultsCard(id, ...args) {
   $('.results .container .row').append(createCard(id, 'col-lg-3 col-md-4 col-sm-6 col-12 overflow-hidden', ...args));
 }
 
+// Creates cards for tutorial or video carousels
 function createCard (id, cardClasses, title, sub_title, thumb_url, author, author_pic_url, star, duration) {
   const $newCard = $('<div class="card border-0"></div>');
   $newCard.addClass(cardClasses);
@@ -80,6 +85,7 @@ function createCard (id, cardClasses, title, sub_title, thumb_url, author, autho
   return $newCard;
 }
 
+// Getting video and/or tutorial data from API and then calls createCarouselCard to assemble each card for a tutorial or video carousel.
 function queryTutorialsOrVideos (url, $carousel) {
   const $heart = $carousel.find('.lds-heart');
   $heart.show();
@@ -91,11 +97,11 @@ function queryTutorialsOrVideos (url, $carousel) {
   }).then(() => { $heart.hide(); });
 }
 
+// Overriding Bootstrap functionality for multi-card carousel.
 function initCarousel () {
   $('.late-and-tut .carousel .carousel-item').each(function () {
     var minPerSlide = 3;
     var next = $(this).next();
-    console.log("NEXT: ", next.get(0));
 
     if (!next.length)
       next = $(this).siblings(':first');
@@ -110,6 +116,7 @@ function initCarousel () {
   });
 }
 
+// Changes string from snake case to title case.
 function titleize (str) {
   return str
     .split("_")
@@ -117,6 +124,7 @@ function titleize (str) {
     .join(" ")
 }
 
+// Creates a dropdown item and appends it to the menu.
 function createDropdownItem (menuItem, $menu, $button) {
   const $menuSelector = $('<a class="dropdown-item" href="#" data-val="' + menuItem + '">' + titleize(menuItem) + '</a>');
   $menuSelector.click(() => { $button.text(titleize(menuItem));
@@ -125,6 +133,7 @@ function createDropdownItem (menuItem, $menu, $button) {
   $menu.append($menuSelector);
 }
 
+// Creates dropdown menus.
 function buildDropdowns (data) {
   data.topics.forEach(t => {
     createDropdownItem(t, $('.topic-menu'), $('#topic'));
@@ -136,6 +145,7 @@ function buildDropdowns (data) {
   $('#sort').text(titleize(data.sort));
 }
 
+// Gets course data from api, creates results cards by calling createTresultsCards, and appends result cards to results page
 function queryCourses () {
   const url = 'https://smileschool-api.hbtn.info/courses';
   let topic = $('#topic').attr('data-val');
@@ -152,6 +162,7 @@ function queryCourses () {
 		      return data });
 }
 
+// Initializes page.
 $(document).ready(function () {
   queryTestimonials();
   const tutorials = 'https://smileschool-api.hbtn.info/popular-tutorials';
